@@ -1,45 +1,36 @@
 # HangMan Project --->
 import random
-
 word_list = ["aardvark", "baboon", "camel"]
-
-# TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
-
 chosen_word = random.choice(word_list)
+word_lenght = len(chosen_word)
 
 # Testing Code
 print(f"The word is : {chosen_word}")
 
-# TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
-
-# TODO-4: - Create an empty List called display.
-# For each letter in the chosen_word, add a "_" to 'display'.
-# So if the chosen_word was "apple", display should be
-# ["_", "_", "_", "_", "_"] with 5 "_" representing each letter to guess.
-
+# Create blanks
 display = []
-word_lenght = len(chosen_word)
 for _ in range(word_lenght):
     display += "_"
 print(display)
 
-guess = input("Guess a letter: ").lower()
+end_of_game = False
 
-# TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
+while not end_of_game:
+    guess = input("Guess a letter: ").lower()
+    # check guessed letter
+    for position in range(word_lenght):
+        letter = chosen_word[position]
+        # print(f"Current position: {position}\nCurrent letter: {letter}\n"
+        #       f"Guessed letter: {guess}")
+        if letter == guess:
+            display[position] = letter
 
-# TODO-5: - Loop through each position in the chosen_word;
-# If the letter at that position matches 'guess' then reveal that letter in the display at that position.
-# e.g. If the user guessed "p" and the chosen word was "apple", then display should be ["_", "p", "p", "_", "_"].
+    print(display)
 
-for position in range(word_lenght):
-    letter = chosen_word[position]
-    if letter == guess:
-        display[position] = letter
-
-# TODO-6: - Print 'display' and you should see the guessed letter in the correct
-#  position and every other letter replace with "_".
-
-print(display)
-
+    # check if there are no more "_" left in 'display'.
+    # then all letters have been guessed.
+    if "_" not in display:
+        end_of_game = True
+        print("You win!")
 
 
