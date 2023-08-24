@@ -34,7 +34,7 @@ while not end_of_game:
         if lives == 0:
             end_of_game = True
             print("You Lose!")
-    print(display)
+    print(f"{' '.join(display)}")
 
     # check if there are no more "_" left in 'display'.
     # then all letters have been guessed.
